@@ -50,6 +50,12 @@ QQ群：237633234
 
 以上为 ``main.py`` 中你需要实现的内容，你可以利用 ``python_example`` 下的文件进行进一步参考。**请注意**，在加载模型的时候请尽量使用相对路径，我们会将提交的压缩包解压到``/work``路径下然后运行。
 
+**请注意，如果你想要自己通过命令行运行python代码，请按照如下命令运行**
+
+```bash
+sudo /home/user/miniconda/bin/python3 work.py
+```
+
 ## 其他语言的支持
 
 如上文所述，我们现阶段只支持 ``python`` 语言的提交，但是这并不代表你不能够使用其他语言进行预测。你可以使用``python3 main.py``去调用运行其他语言的命令。但请注意，在你调用其他命令的时候请在命令前加上``sudo``以保证权限不会出问题。
@@ -256,7 +262,10 @@ xgboost                          1.0.2
 zipp                             3.1.0              
 zope.deprecation                 4.4.0              
 zope.interface                   5.1.0              
-zope.sqlalchemy                  1.3                
+zope.sqlalchemy                  1.3
+filelock                         3.0.12
+tokenizers                       0.7.0
+transformers                     2.9.1
 ```
 
 等待补全中

@@ -6,7 +6,7 @@ First step:Data process to get the data for trainning
 Second step:Start to train the model
 python run_cail.py \
     --name train_v1 \
-    --bert_model bert_dir \ #bert weight direct,we used RoBERTa model weight
+    --bert_model bert_dir \ #bert weight direct,we used RoBERTa-wwm-ext[https://github.com/ymcui/Chinese-BERT-wwm] base model weight
     --data_dir output_data_dir \ #the as the output_data_dir in First step
     --batch_size 2 \
     --eval_batch_size 32 \

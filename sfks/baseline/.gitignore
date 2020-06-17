@@ -1,0 +1,13 @@
+*~
+*swp
+*swo
+.idea
+__pycache__
+*un~
+
+config/default_local.config
+
+temp
+notebook
+result
+data

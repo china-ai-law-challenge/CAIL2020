@@ -1,0 +1,38 @@
+Two steps to run baseline system
+
+First step:Data process to get the data for trainning
+./preprocess.sh input_data_dir output_data_dir # input_data_dir should contain the train.json and dev.json, output_data_dir is used to save generated data
+
+Second step:Start to train the model
+python run_cail.py \
+    --name train_v1 \
+    --bert_model bert_dir \ #bert weight direct,we used RoBERTa model weight
+    --data_dir output_data_dir \ #the as the output_data_dir in First step
+    --batch_size 2 \
+    --eval_batch_size 32 \
+    --lr 1e-5 \
+    --gradient_accumulation_steps 1 \
+    --epochs 10 \
+
+Baseline results(evaluate metrics like HotpotQA)
+                          ans_em     ans_f1    sup_em   sup_f1   joint_em   joint_f1
+Baseline                  0.6046	0.6915      0.3444	0.5496    0.2602	0.3906
+Baseline  +  CAIL19 data  0.6658	0.7545      0.3929	0.5814    0.3163	0.4543
+
+
+Output file format(you can see ouput_example.json)：
+Output file is a json file dict.
+{
+"answer": {
+"id":output_answer
+}
+ "sp": {
+ "id":[[title,sentid1],[title,sentid2]]
+ }
+
+}
+
+Evaluation
+
+python evaluate.py predict.json test.json
+

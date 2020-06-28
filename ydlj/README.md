@@ -251,3 +251,7 @@ zope.sqlalchemy                  1.3
 欢迎关注哈工大讯飞联合实验室官方微信公众号，了解最新的技术动态。
 
 <div align=center><img width="400" height="400" src="https://s1.ax1x.com/2020/06/17/NEvQu6.jpg"/></div>
+
+## 问题反馈
+如有问题，请在GitHub Issue中提交
+

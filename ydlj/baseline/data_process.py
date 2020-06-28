@@ -107,7 +107,7 @@ def read_examples( full_file):
     examples = []
     for case in tqdm(full_data):   
         key = case['_id']
-        qas_type = case['type']
+        qas_type = "" # case['type']
         sup_facts = set([(sp[0], sp[1]) for sp in case['supporting_facts']])   
         sup_titles = set([sp[0] for sp in case['supporting_facts']]) 
         orig_answer_text = case['answer']

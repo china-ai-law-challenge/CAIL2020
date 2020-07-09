@@ -38,12 +38,11 @@ QQ群：237633234
 
 ## 现有的系统环境
 
-[pytorch1.5.1](./envs/pytorch1.5.1)
+[pytorch1.5.1](./envs/pytorch1.5.1.md)
 
-[tf2.0](./envs/tf2.0)
+[tf2.0](./envs/tf2.0.md)
 
-[tf1.14](./envs/tf1.14)
-
+[tf1.14](./envs/tf1.14.md)
 
 等待补全中
 

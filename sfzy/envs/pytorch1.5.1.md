@@ -32,7 +32,7 @@ Cython==0.29.20
 decorator==4.4.2
 defusedxml==0.6.0
 docutils==0.15.2
--e git+https://gitee.com/wangyizhen/fairseq.git@16e9661bd968cf66b02d7870c038d7219da3a5b9#egg=fairseq
+fairseq
 fastai==1.0.61
 fastprogress==0.2.3
 fasttext==0.9.2

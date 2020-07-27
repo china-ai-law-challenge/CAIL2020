@@ -34,7 +34,7 @@ QQ群：237633234
 
 本赛道采用的ROUGE(Recall-Oriented Understudy for Gisting Evaluation)评价评价。ROUGE指标将自动生成的摘要与参考摘要进行比较, 其中ROUGE-1衡量unigram匹配情况，ROUGE-2衡量bigram匹配，ROUGE-L记录最长的公共子序列。三者都只采用f-score，且总分的计算方式为：```0.2*f-score(R1)+0.4*f-score(R2)+0.4*f-score(RL)```
 
-我们在 ``evaluate`` 文件夹中提供了评分的代码，以供参考。评测代码正在更新中....
+我们在 ``evaluate`` 文件夹中摘要生成的样例
 
 ## 现有的系统环境
 

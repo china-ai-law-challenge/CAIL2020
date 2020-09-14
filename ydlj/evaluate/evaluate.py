@@ -73,7 +73,10 @@ def update_sp(metrics, prediction, gold):
     prec = 1.0 * tp / (tp + fp) if tp + fp > 0 else 0.0
     recall = 1.0 * tp / (tp + fn) if tp + fn > 0 else 0.0
     f1 = 2 * prec * recall / (prec + recall) if prec + recall > 0 else 0.0
-    em = 1.0 if fp + fn == 0 else 0.0
+    if fp + fn == 0:
+        em, prec, recall, f1 = 1.0, 1.0, 1.0, 1.0
+    else:
+        em = 0.0
     metrics['sp_em'] += em
     metrics['sp_f1'] += f1
     metrics['sp_prec'] += prec

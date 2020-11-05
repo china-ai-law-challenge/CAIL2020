@@ -28,6 +28,25 @@ class Example(object):
                  orig_answer_text=None,
                  start_position=None,
                  end_position=None):
+        """
+        Initialize a question.
+
+        Args:
+            self: (todo): write your description
+            qas_id: (str): write your description
+            qas_type: (todo): write your description
+            doc_tokens: (str): write your description
+            question_text: (str): write your description
+            sent_num: (int): write your description
+            sent_names: (str): write your description
+            sup_fact_id: (str): write your description
+            para_start_end_position: (int): write your description
+            sent_start_end_position: (todo): write your description
+            entity_start_end_position: (todo): write your description
+            orig_answer_text: (str): write your description
+            start_position: (int): write your description
+            end_position: (int): write your description
+        """
         self.qas_id = qas_id
         self.qas_type = qas_type
         self.doc_tokens = doc_tokens
@@ -62,6 +81,27 @@ class InputFeatures(object):
                  token_to_orig_map,
                  start_position=None,
                  end_position=None):
+        """
+        Parameters ---------- qas_id : str ) : class
+
+        Args:
+            self: (todo): write your description
+            qas_id: (str): write your description
+            doc_tokens: (str): write your description
+            doc_input_ids: (int): write your description
+            doc_input_mask: (int): write your description
+            doc_segment_ids: (str): write your description
+            query_tokens: (str): write your description
+            query_input_ids: (str): write your description
+            query_input_mask: (int): write your description
+            query_segment_ids: (str): write your description
+            sent_spans: (todo): write your description
+            sup_fact_ids: (str): write your description
+            ans_type: (todo): write your description
+            token_to_orig_map: (str): write your description
+            start_position: (int): write your description
+            end_position: (int): write your description
+        """
 
         self.qas_id = qas_id
         self.doc_tokens = doc_tokens
@@ -86,6 +126,13 @@ class InputFeatures(object):
 
 
 def check_in_full_paras(answer, paras):
+    """
+    Check if the full answer is in the full answer.
+
+    Args:
+        answer: (todo): write your description
+        paras: (todo): write your description
+    """
     full_doc = ""
     for p in paras:
         full_doc += " ".join(p[1])
@@ -93,12 +140,24 @@ def check_in_full_paras(answer, paras):
 
 
 def read_examples( full_file):
+    """
+    Reads examples from file.
+
+    Args:
+        full_file: (str): write your description
+    """
 
     with open(full_file, 'r', encoding='utf-8') as reader:
         full_data = json.load(reader)    
 
 
     def is_whitespace(c):
+        """
+        Return true if a character is a whitespace.
+
+        Args:
+            c: (todo): write your description
+        """
         if c == " " or c == "\t" or c == "\r" or c == "\n" or ord(c) == 0x202F:
             return True
         return False
@@ -238,6 +297,15 @@ def read_examples( full_file):
 
 
 def convert_examples_to_features(examples, tokenizer, max_seq_length, max_query_length):
+    """
+    Converts a list of examples into a list of examples.
+
+    Args:
+        examples: (list): write your description
+        tokenizer: (todo): write your description
+        max_seq_length: (int): write your description
+        max_query_length: (int): write your description
+    """
     # max_query_length = 50
 
     features = []
@@ -285,6 +353,14 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length, max_query_
 
 
         def relocate_tok_span(orig_start_position, orig_end_position, orig_text):
+            """
+            Return the index of the tokens that document.
+
+            Args:
+                orig_start_position: (todo): write your description
+                orig_end_position: (todo): write your description
+                orig_text: (str): write your description
+            """
            
             if orig_start_position is None:  
                 return 0, 0
@@ -390,12 +466,26 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length, max_query_
 
 
 def _largest_valid_index(spans, limit):
+    """
+    Return the index of the largest valid index.
+
+    Args:
+        spans: (int): write your description
+        limit: (int): write your description
+    """
     for idx in range(len(spans)):
         if spans[idx][1] >= limit:
             return idx
 
 
 def get_valid_spans(spans, limit):
+    """
+    Return a list of spans for a list of spans.
+
+    Args:
+        spans: (str): write your description
+        limit: (str): write your description
+    """
     new_spans = []
     for span in spans:
         if span[1] < limit:

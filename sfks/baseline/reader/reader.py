@@ -11,16 +11,42 @@ formatter = {}
 
 
 def init_formatter(config, task_list, *args, **params):
+    """
+    Initialize formatter.
+
+    Args:
+        config: (todo): write your description
+        task_list: (list): write your description
+        params: (dict): write your description
+    """
     for task in task_list:
         formatter[task] = form.init_formatter(config, task, *args, **params)
 
         def train_collate_fn(data):
+            """
+            Train a pre - process function.
+
+            Args:
+                data: (array): write your description
+            """
             return formatter["train"].process(data, config, "train")
 
         def valid_collate_fn(data):
+            """
+            Validate formatter formatter.
+
+            Args:
+                data: (array): write your description
+            """
             return formatter["valid"].process(data, config, "valid")
 
         def test_collate_fn(data):
+            """
+            Collate test test function.
+
+            Args:
+                data: (array): write your description
+            """
             return formatter["test"].process(data, config, "test")
 
         if task == "train":
@@ -32,6 +58,14 @@ def init_formatter(config, task_list, *args, **params):
 
 
 def init_one_dataset(config, mode, *args, **params):
+    """
+    Initialize one single dataset.
+
+    Args:
+        config: (todo): write your description
+        mode: (str): write your description
+        params: (dict): write your description
+    """
     temp_mode = mode
     if mode != "train":
         try:
@@ -81,6 +115,13 @@ def init_one_dataset(config, mode, *args, **params):
 
 
 def init_test_dataset(config, *args, **params):
+    """
+    Initialize a test dataset.
+
+    Args:
+        config: (dict): write your description
+        params: (todo): write your description
+    """
     init_formatter(config, ["test"], *args, **params)
     test_dataset = init_one_dataset(config, "test", *args, **params)
 
@@ -88,6 +129,13 @@ def init_test_dataset(config, *args, **params):
 
 
 def init_dataset(config, *args, **params):
+    """
+    Initialize a dataset.
+
+    Args:
+        config: (dict): write your description
+        params: (dict): write your description
+    """
     init_formatter(config, ["train", "valid"], *args, **params)
     train_dataset = init_one_dataset(config, "train", *args, **params)
     valid_dataset = init_one_dataset(config, "valid", *args, **params)

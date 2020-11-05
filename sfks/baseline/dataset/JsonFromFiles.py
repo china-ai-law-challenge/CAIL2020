@@ -7,6 +7,16 @@ from tools.dataset_tool import dfs_search
 
 class JsonFromFilesDataset(Dataset):
     def __init__(self, config, mode, encoding="utf8", *args, **params):
+        """
+        Initialize the config file.
+
+        Args:
+            self: (todo): write your description
+            config: (dict): write your description
+            mode: (todo): write your description
+            encoding: (str): write your description
+            params: (dict): write your description
+        """
         self.config = config
         self.mode = mode
         self.file_list = []
@@ -22,7 +32,20 @@ class JsonFromFilesDataset(Dataset):
                 self.data.append(json.loads(line))
 
     def __getitem__(self, item):
+        """
+        Get the value of item.
+
+        Args:
+            self: (todo): write your description
+            item: (str): write your description
+        """
         return self.data[item]
 
     def __len__(self):
+        """
+        Returns the length of the data.
+
+        Args:
+            self: (todo): write your description
+        """
         return len(self.data)

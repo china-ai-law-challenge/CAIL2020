@@ -6,24 +6,61 @@ from collections import Counter
 import pickle
 
 def normalize_answer(s):
+    """
+    Normalize a string.
+
+    Args:
+        s: (todo): write your description
+    """
 
     def remove_articles(text):
+        """
+        Removes the articles from the text.
+
+        Args:
+            text: (str): write your description
+        """
         return re.sub(r'\b(a|an|the)\b', ' ', text)
 
     def white_space_fix(text):
+        """
+        Removes whitespace and remove leading whitespace.
+
+        Args:
+            text: (str): write your description
+        """
         return ' '.join(text.split())
 
     def remove_punc(text):
+        """
+        Remove punctuation from string.
+
+        Args:
+            text: (str): write your description
+        """
         exclude = set(string.punctuation)
         return ''.join(ch for ch in text if ch not in exclude)
 
     def lower(text):
+        """
+        Convert text to lowercase
+
+        Args:
+            text: (str): write your description
+        """
         return text.lower()
 
     return white_space_fix(remove_articles(remove_punc(lower(s))))
 
 
 def f1_score(prediction, ground_truth):
+    """
+    Compute f1 score.
+
+    Args:
+        prediction: (array): write your description
+        ground_truth: (array): write your description
+    """
     normalized_prediction = normalize_answer(prediction)
     normalized_ground_truth = normalize_answer(ground_truth)
 
@@ -47,9 +84,24 @@ def f1_score(prediction, ground_truth):
 
 
 def exact_match_score(prediction, ground_truth):
+    """
+    Compute the answer.
+
+    Args:
+        prediction: (todo): write your description
+        ground_truth: (todo): write your description
+    """
     return (normalize_answer(prediction) == normalize_answer(ground_truth))
 
 def update_answer(metrics, prediction, gold):
+    """
+    Update the answer. f1 and gold.
+
+    Args:
+        metrics: (todo): write your description
+        prediction: (todo): write your description
+        gold: (todo): write your description
+    """
     em = exact_match_score(prediction, gold)
     f1, prec, recall = f1_score(prediction, gold)
     metrics['em'] += float(em)
@@ -59,6 +111,14 @@ def update_answer(metrics, prediction, gold):
     return em, prec, recall
 
 def update_sp(metrics, prediction, gold):
+    """
+    Update the metrics.
+
+    Args:
+        metrics: (dict): write your description
+        prediction: (array): write your description
+        gold: (array): write your description
+    """
     cur_sp_pred = set(map(tuple, prediction))
     gold_sp_pred = set(map(tuple, gold))
     tp, fp, fn = 0, 0, 0
@@ -84,6 +144,13 @@ def update_sp(metrics, prediction, gold):
     return em, prec, recall
 
 def eval(prediction_file, gold_file):
+    """
+    Evaluate the bed file.
+
+    Args:
+        prediction_file: (str): write your description
+        gold_file: (str): write your description
+    """
     with open(prediction_file) as f:
         prediction = json.load(f)
     with open(gold_file) as f:

@@ -14,6 +14,17 @@ logger = logging.getLogger(__name__)
 
 
 def checkpoint(filename, model, optimizer, trained_epoch, config, global_step):
+    """
+    Save the model to disk.
+
+    Args:
+        filename: (str): write your description
+        model: (todo): write your description
+        optimizer: (todo): write your description
+        trained_epoch: (todo): write your description
+        config: (todo): write your description
+        global_step: (todo): write your description
+    """
     model_to_save = model.module if hasattr(model, 'module') else model
     save_params = {
         "model": model_to_save.state_dict(),
@@ -30,6 +41,15 @@ def checkpoint(filename, model, optimizer, trained_epoch, config, global_step):
 
 
 def train(parameters, config, gpu_list, do_test=False):
+    """
+    Training function.
+
+    Args:
+        parameters: (todo): write your description
+        config: (todo): write your description
+        gpu_list: (list): write your description
+        do_test: (todo): write your description
+    """
     epoch = config.getint("train", "epoch")
     batch_size = config.getint("train", "batch_size")
 

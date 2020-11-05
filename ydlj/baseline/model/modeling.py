@@ -5,6 +5,13 @@ from torch.autograd import Variable
 import numpy as np
 class SimplePredictionLayer(nn.Module):
     def __init__(self, config):
+        """
+        Initialize the inputs.
+
+        Args:
+            self: (todo): write your description
+            config: (todo): write your description
+        """
         super(SimplePredictionLayer, self).__init__()
         self.input_dim = config.input_dim
 
@@ -18,6 +25,13 @@ class SimplePredictionLayer(nn.Module):
         self.cache_mask = None
 
     def get_output_mask(self, outer):
+        """
+        Returns the mask of the mask.
+
+        Args:
+            self: (todo): write your description
+            outer: (todo): write your description
+        """
         # (batch, 512, 512)
         S = outer.size(1)
         if S <= self.cache_S:
@@ -29,6 +43,14 @@ class SimplePredictionLayer(nn.Module):
         return Variable(self.cache_mask, requires_grad=False)
 
     def forward(self, batch, input_state):
+        """
+        Perform a batch.
+
+        Args:
+            self: (todo): write your description
+            batch: (todo): write your description
+            input_state: (todo): write your description
+        """
         query_mapping = batch['query_mapping']  # (batch, 512) 不一定是512，可能略小
         context_mask = batch['context_mask']  # bert里实际有输入的位置
         all_mapping = batch['all_mapping']  # (batch_size, 512, max_sent) 每个句子的token对应为1
@@ -65,12 +87,28 @@ class BertSupportNet(nn.Module):
     """
 
     def __init__(self, config, encoder):
+        """
+        Initialize the network.
+
+        Args:
+            self: (todo): write your description
+            config: (todo): write your description
+            encoder: (todo): write your description
+        """
         super(BertSupportNet, self).__init__()
         # self.bert_model = BertModel.from_pretrained(config.bert_model)
         self.encoder = encoder
         self.graph_fusion_net = SupportNet(config)
 
     def forward(self, batch, debug=False):
+        """
+        Forward computation.
+
+        Args:
+            self: (todo): write your description
+            batch: (todo): write your description
+            debug: (bool): write your description
+        """
         doc_ids, doc_mask, segment_ids = batch['context_idxs'], batch['context_mask'], batch['segment_idxs']
         # roberta不可以输入token_type_ids
         all_doc_encoder_layers = self.encoder(input_ids=doc_ids,
@@ -87,6 +125,13 @@ class SupportNet(nn.Module):
     """
 
     def __init__(self, config):
+        """
+        Initialize the network.
+
+        Args:
+            self: (todo): write your description
+            config: (todo): write your description
+        """
         super(SupportNet, self).__init__()
         self.config = config  # 就是args
         # self.n_layers = config.n_layers  # 2
@@ -94,6 +139,14 @@ class SupportNet(nn.Module):
         self.prediction_layer = SimplePredictionLayer(config)
 
     def forward(self, batch, debug=False):
+        """
+        Forward computation.
+
+        Args:
+            self: (todo): write your description
+            batch: (todo): write your description
+            debug: (bool): write your description
+        """
         context_encoding = batch['context_encoding']
         predictions = self.prediction_layer(batch, context_encoding)
 

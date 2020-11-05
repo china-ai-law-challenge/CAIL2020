@@ -5,6 +5,11 @@ from os.path import join
 
 
 def process_arguments(args):
+    """
+    Process arguments.
+
+    Args:
+    """
     args.checkpoint_path = join(args.checkpoint_path, args.name)
     args.prediction_path = join(args.prediction_path, args.name)
     args.max_query_len = 50
@@ -12,12 +17,22 @@ def process_arguments(args):
 
 
 def save_settings(args):
+    """
+    Save settings to file.
+
+    Args:
+    """
     os.makedirs(args.checkpoint_path, exist_ok=True)
     os.makedirs(args.prediction_path, exist_ok=True)
     json.dump(args.__dict__, open(join(args.checkpoint_path, "run_settings.json"), 'w'))
 
 
 def set_config():
+    """
+    Set the command line options.
+
+    Args:
+    """
     parser = argparse.ArgumentParser()
     data_path = 'output'
 

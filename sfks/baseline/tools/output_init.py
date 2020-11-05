@@ -7,6 +7,13 @@ output_function_dic = {
 
 
 def init_output_function(config, *args, **params):
+    """
+    Initialize a function.
+
+    Args:
+        config: (todo): write your description
+        params: (dict): write your description
+    """
     name = config.get("output", "output_function")
 
     if name in output_function_dic:

@@ -7,12 +7,27 @@ from pytorch_pretrained_bert import BertTokenizer
 
 class WordFormatter:
     def __init__(self, config, mode):
+        """
+        Initialize the config.
+
+        Args:
+            self: (todo): write your description
+            config: (todo): write your description
+            mode: (todo): write your description
+        """
         self.max_question_len = config.getint("data", "max_question_len")
         self.max_option_len = config.getint("data", "max_option_len")
 
         self.word2id = json.load(open(config.get("data", "word2id"), "r", encoding="utf8"))
 
     def convert_tokens_to_ids(self, tokens):
+        """
+        Converts a list of tokens into a list of tokens.
+
+        Args:
+            self: (todo): write your description
+            tokens: (str): write your description
+        """
         arr = []
         for a in range(0, len(tokens)):
             if tokens[a] in self.word2id:
@@ -22,6 +37,15 @@ class WordFormatter:
         return arr
 
     def convert(self, tokens, l, bk=False):
+        """
+        Convert a list of tokens.
+
+        Args:
+            self: (todo): write your description
+            tokens: (str): write your description
+            l: (todo): write your description
+            bk: (todo): write your description
+        """
         while len(tokens) < l:
             tokens.append("PAD")
         if bk:
@@ -33,6 +57,16 @@ class WordFormatter:
         return ids
 
     def process(self, data, config, mode, *args, **params):
+        """
+        Process a single tensor.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+            config: (todo): write your description
+            mode: (str): write your description
+            params: (dict): write your description
+        """
         context = []
         question = []
         label = []

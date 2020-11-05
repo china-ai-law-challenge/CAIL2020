@@ -5,6 +5,12 @@ logger = logging.Logger(__name__)
 
 
 def get_prf(res):
+    """
+    Compute the precision.
+
+    Args:
+        res: (list): write your description
+    """
     # According to https://github.com/dice-group/gerbil/wiki/Precision,-Recall-and-F1-measure
     if res["TP"] == 0:
         if res["FP"] == 0 and res["FN"] == 0:
@@ -24,6 +30,12 @@ def get_prf(res):
 
 
 def gen_micro_macro_result(res):
+    """
+    Generate macros result.
+
+    Args:
+        res: (todo): write your description
+    """
     precision = []
     recall = []
     f1 = []
@@ -64,10 +76,28 @@ def gen_micro_macro_result(res):
 
 
 def null_accuracy_function(outputs, label, config, result=None):
+    """
+    Return null null null null function.
+
+    Args:
+        outputs: (array): write your description
+        label: (str): write your description
+        config: (todo): write your description
+        result: (todo): write your description
+    """
     return None
 
 
 def single_label_top1_accuracy(outputs, label, config, result=None):
+    """
+    Return the accuracy.
+
+    Args:
+        outputs: (todo): write your description
+        label: (str): write your description
+        config: (todo): write your description
+        result: (todo): write your description
+    """
     if result is None:
         result = []
     id1 = torch.max(outputs, dim=1)[1]
@@ -92,6 +122,15 @@ def single_label_top1_accuracy(outputs, label, config, result=None):
 
 
 def multi_label_accuracy(outputs, label, config, result=None):
+    """
+    Calculate accuracy.
+
+    Args:
+        outputs: (todo): write your description
+        label: (str): write your description
+        config: (todo): write your description
+        result: (todo): write your description
+    """
     if len(label[0]) != len(outputs[0]):
         raise ValueError('Input dimensions of labels and outputs must match.')
 
@@ -128,6 +167,15 @@ def multi_label_accuracy(outputs, label, config, result=None):
 
 
 def single_label_top2_accuracy(outputs, label, config, result=None):
+    """
+    Accuracy accuracy.
+
+    Args:
+        outputs: (todo): write your description
+        label: (str): write your description
+        config: (todo): write your description
+        result: (todo): write your description
+    """
     raise NotImplementedError
     # still bug here
 

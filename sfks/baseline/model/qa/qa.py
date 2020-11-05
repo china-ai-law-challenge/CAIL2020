@@ -10,6 +10,15 @@ from model.qa.util import generate_ans
 
 class Model(nn.Module):
     def __init__(self, config, gpu_list, *args, **params):
+        """
+        Initialize embedding.
+
+        Args:
+            self: (todo): write your description
+            config: (todo): write your description
+            gpu_list: (list): write your description
+            params: (dict): write your description
+        """
         super(Model, self).__init__()
 
         self.hidden_size = config.getint("model", "hidden_size")
@@ -31,9 +40,29 @@ class Model(nn.Module):
         self.accuracy_function = single_label_top1_accuracy
 
     def init_multi_gpu(self, device, config, *args, **params):
+        """
+        Initialize a device.
+
+        Args:
+            self: (todo): write your description
+            device: (todo): write your description
+            config: (todo): write your description
+            params: (dict): write your description
+        """
         pass
 
     def forward(self, data, config, gpu_list, acc_result, mode):
+        """
+        Forward computation.
+
+        Args:
+            self: (todo): write your description
+            data: (array): write your description
+            config: (todo): write your description
+            gpu_list: (list): write your description
+            acc_result: (todo): write your description
+            mode: (str): write your description
+        """
         context = data["context"]
         question = data["question"]
 

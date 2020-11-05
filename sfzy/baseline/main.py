@@ -8,6 +8,12 @@ output_path = "/output/result.json"
 
 
 def get_summary(text):
+    """
+    Parse summary of text.
+
+    Args:
+        text: (str): write your description
+    """
     for i, _ in enumerate(text):
         sent_text = text[i]["sentence"]
         if re.search(r"诉讼请求：", sent_text):

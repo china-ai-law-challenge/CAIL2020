@@ -2,6 +2,13 @@ import torch
 
 
 def generate_ans(id_list, ans_list):
+    """
+    Generate a list of integers.
+
+    Args:
+        id_list: (list): write your description
+        ans_list: (list): write your description
+    """
     result = []
     for a in range(0, len(id_list)):
         idx = id_list[a]

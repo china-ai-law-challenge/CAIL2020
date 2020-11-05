@@ -25,6 +25,11 @@ from torch import nn
 
 
 def set_seed(args):
+    """
+    Sets random seed.
+
+    Args:
+    """
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -35,12 +40,33 @@ def set_seed(args):
 
 
 def dispatch(context_encoding, context_mask, batch, device):
+    """
+    Parameters ---------- context_encoding from context_context.
+
+    Args:
+        context_encoding: (str): write your description
+        context_mask: (todo): write your description
+        batch: (todo): write your description
+        device: (todo): write your description
+    """
     batch['context_encoding'] = context_encoding.cuda(device)
     batch['context_mask'] = context_mask.float().cuda(device)
     return batch
 
 
 def compute_loss(batch, start_logits, end_logits, type_logits, sp_logits, start_position, end_position):
+    """
+    Compute the loss.
+
+    Args:
+        batch: (todo): write your description
+        start_logits: (todo): write your description
+        end_logits: (todo): write your description
+        type_logits: (str): write your description
+        sp_logits: (todo): write your description
+        start_position: (todo): write your description
+        end_position: (todo): write your description
+    """
     loss1 = criterion(start_logits, batch['y1']) + criterion(end_logits, batch['y2'])
     loss2 = args.type_lambda * criterion(type_logits, batch['q_type'])
 
@@ -55,6 +81,17 @@ import json
 
 @torch.no_grad()
 def predict(model, dataloader, example_dict, feature_dict, prediction_file, need_sp_logit_file=False):
+    """
+    Predict the model.
+
+    Args:
+        model: (todo): write your description
+        dataloader: (todo): write your description
+        example_dict: (array): write your description
+        feature_dict: (str): write your description
+        prediction_file: (str): write your description
+        need_sp_logit_file: (str): write your description
+    """
 
     model.eval()
     answer_dict = {}
@@ -107,6 +144,14 @@ def predict(model, dataloader, example_dict, feature_dict, prediction_file, need
 
 
 def train_epoch(data_loader, model, predict_during_train=False):
+    """
+    Training function.
+
+    Args:
+        data_loader: (todo): write your description
+        model: (todo): write your description
+        predict_during_train: (bool): write your description
+    """
     model.train()
     pbar = tqdm(total=len(data_loader))
     epoch_len = len(data_loader)
@@ -133,6 +178,13 @@ def train_epoch(data_loader, model, predict_during_train=False):
 
 
 def train_batch(model, batch):
+    """
+    Train the model.
+
+    Args:
+        model: (todo): write your description
+        batch: (todo): write your description
+    """
     global global_step, total_train_loss
 
     start_logits, end_logits, type_logits, sp_logits, start_position, end_position = model(batch)

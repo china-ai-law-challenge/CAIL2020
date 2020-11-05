@@ -3,6 +3,14 @@ from pytorch_pretrained_bert import BertAdam
 
 
 def init_optimizer(model, config, *args, **params):
+    """
+    Initialize a optimizer.
+
+    Args:
+        model: (todo): write your description
+        config: (todo): write your description
+        params: (dict): write your description
+    """
     optimizer_type = config.get("train", "optimizer")
     learning_rate = config.getfloat("train", "learning_rate")
     if optimizer_type == "adam":

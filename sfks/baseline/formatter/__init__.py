@@ -12,6 +12,14 @@ formatter_list = {
 
 
 def init_formatter(config, mode, *args, **params):
+    """
+    Initialize formatter.
+
+    Args:
+        config: (todo): write your description
+        mode: (str): write your description
+        params: (dict): write your description
+    """
     temp_mode = mode
     if mode != "train":
         try:

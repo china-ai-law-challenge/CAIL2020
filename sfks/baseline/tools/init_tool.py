@@ -10,6 +10,16 @@ logger = logging.getLogger(__name__)
 
 
 def init_all(config, gpu_list, checkpoint, mode, *args, **params):
+    """
+    Initialize the optimizer.
+
+    Args:
+        config: (dict): write your description
+        gpu_list: (list): write your description
+        checkpoint: (todo): write your description
+        mode: (todo): write your description
+        params: (dict): write your description
+    """
     result = {}
 
     logger.info("Begin to initialize dataset and formatter...")

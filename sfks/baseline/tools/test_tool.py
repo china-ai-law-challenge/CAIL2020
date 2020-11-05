@@ -10,6 +10,14 @@ logger = logging.getLogger(__name__)
 
 
 def test(parameters, config, gpu_list):
+    """
+    Perform a test test.
+
+    Args:
+        parameters: (todo): write your description
+        config: (todo): write your description
+        gpu_list: (list): write your description
+    """
     model = parameters["model"]
     dataset = parameters["test_dataset"]
     model.eval()

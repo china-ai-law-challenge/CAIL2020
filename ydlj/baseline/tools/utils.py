@@ -33,6 +33,12 @@ def get_final_text(pred_text, orig_text, do_lower_case, verbose_logging=False):
     # can fail in certain cases in which case we just return `orig_text`.
 
     def _strip_spaces(text):
+        """
+        Strips spaces from a string.
+
+        Args:
+            text: (str): write your description
+        """
         ns_chars = []
         ns_to_s_map = collections.OrderedDict()
         for (i, c) in enumerate(text):
@@ -98,6 +104,17 @@ def get_final_text(pred_text, orig_text, do_lower_case, verbose_logging=False):
 
 
 def convert_to_tokens(example, features, ids, y1, y2, q_type):
+    """
+    Converts a list of features into a list of tokens.
+
+    Args:
+        example: (str): write your description
+        features: (todo): write your description
+        ids: (list): write your description
+        y1: (todo): write your description
+        y2: (todo): write your description
+        q_type: (str): write your description
+    """
     answer_dict = dict()
     
     for i, qid in enumerate(ids):   # article id

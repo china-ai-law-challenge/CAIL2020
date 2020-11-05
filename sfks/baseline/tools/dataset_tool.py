@@ -2,6 +2,13 @@ import os
 
 
 def dfs_search(path, recursive):
+    """
+    Search for files in - memory.
+
+    Args:
+        path: (str): write your description
+        recursive: (bool): write your description
+    """
     if os.path.isfile(path):
         return [path]
     file_list = []

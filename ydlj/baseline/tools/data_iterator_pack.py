@@ -8,6 +8,20 @@ IGNORE_INDEX = -100
 class DataIteratorPack(object):
     def __init__(self, features, example_dict,bsz, device, sent_limit, entity_limit,
                  entity_type_dict=None, sequential=False,):
+        """
+        Initialize the examples.
+
+        Args:
+            self: (todo): write your description
+            features: (todo): write your description
+            example_dict: (dict): write your description
+            bsz: (list): write your description
+            device: (todo): write your description
+            sent_limit: (str): write your description
+            entity_limit: (int): write your description
+            entity_type_dict: (dict): write your description
+            sequential: (todo): write your description
+        """
         self.bsz = bsz   # batch_size
         self.device = device
         self.features = features
@@ -22,17 +36,41 @@ class DataIteratorPack(object):
             shuffle(self.features)  
 
     def refresh(self):
+        """
+        Refresh the feature sequence.
+
+        Args:
+            self: (todo): write your description
+        """
         self.example_ptr = 0
         if not self.sequential:
             shuffle(self.features)
 
     def empty(self):
+        """
+        Returns an empty array.
+
+        Args:
+            self: (todo): write your description
+        """
         return self.example_ptr >= len(self.features)
 
     def __len__(self):
+        """
+        Return the length.
+
+        Args:
+            self: (todo): write your description
+        """
         return int(np.ceil(len(self.features)/self.bsz))
 
     def __iter__(self):
+        """
+        Iterate over the tensor for a tensor.
+
+        Args:
+            self: (todo): write your description
+        """
         # BERT input
         context_idxs = torch.LongTensor(self.bsz, 512)
         context_mask = torch.LongTensor(self.bsz, 512)

@@ -10,6 +10,12 @@ logger = logging.getLogger(__name__)
 
 
 def gen_time_str(t):
+    """
+    Generate a string representing a time string.
+
+    Args:
+        t: (todo): write your description
+    """
     t = int(t)
     minute = t // 60
     second = t % 60
@@ -17,6 +23,19 @@ def gen_time_str(t):
 
 
 def output_value(epoch, mode, step, time, loss, info, end, config):
+    """
+    Print the value of an epoch.
+
+    Args:
+        epoch: (int): write your description
+        mode: (str): write your description
+        step: (int): write your description
+        time: (float): write your description
+        loss: (todo): write your description
+        info: (todo): write your description
+        end: (int): write your description
+        config: (todo): write your description
+    """
     try:
         delimiter = config.get("output", "delimiter")
     except Exception as e:
@@ -46,6 +65,19 @@ def output_value(epoch, mode, step, time, loss, info, end, config):
 
 
 def valid(model, dataset, epoch, writer, config, gpu_list, output_function, mode="valid"):
+    """
+    Evaluate the model.
+
+    Args:
+        model: (todo): write your description
+        dataset: (todo): write your description
+        epoch: (int): write your description
+        writer: (todo): write your description
+        config: (todo): write your description
+        gpu_list: (list): write your description
+        output_function: (todo): write your description
+        mode: (str): write your description
+    """
     model.eval()
 
     acc_result = None

@@ -9,6 +9,13 @@ accuracy_function_dic = {
 
 
 def init_accuracy_function(config, *args, **params):
+    """
+    Initialize accuracy function.
+
+    Args:
+        config: (todo): write your description
+        params: (dict): write your description
+    """
     name = config.get("output", "accuracy_method")
     if name in accuracy_function_dic:
         return accuracy_function_dic[name]

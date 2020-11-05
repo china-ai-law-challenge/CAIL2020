@@ -9,6 +9,12 @@ min_freq = 10
 
 
 def cut(s):
+    """
+    Return a cut cut of a word.
+
+    Args:
+        s: (array): write your description
+    """
     arr = list(jieba.cut(s))
     for word in arr:
         if word not in frequency:

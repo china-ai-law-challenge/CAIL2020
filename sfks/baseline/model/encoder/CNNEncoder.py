@@ -5,6 +5,15 @@ import torch.nn.functional as F
 
 class CNNEncoder(nn.Module):
     def __init__(self, config, gpu_list, *args, **params):
+        """
+        Initialize the network.
+
+        Args:
+            self: (todo): write your description
+            config: (todo): write your description
+            gpu_list: (list): write your description
+            params: (dict): write your description
+        """
         super(CNNEncoder, self).__init__()
 
         self.emb_dim = config.getint("model", "hidden_Size")
@@ -21,6 +30,13 @@ class CNNEncoder(nn.Module):
         self.relu = nn.ReLU()
 
     def forward(self, x):
+        """
+        Forward computation.
+
+        Args:
+            self: (todo): write your description
+            x: (todo): write your description
+        """
         batch_size = x.size()[0]
 
         x = x.view(batch_size, 1, -1, self.emb_dim)
